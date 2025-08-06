@@ -2,6 +2,7 @@ import Banner from "./components/Banner"
 import Header from "./components/Header"
 import MovieSection from "./components/MovieSection"
 import NewsLetter from "./components/Newsletter"
+import Footer from "./Footer"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <MovieSection />
       <Banner src="./combo.png" alt="Combo" />
       <NewsLetter />
+      <Footer />
     </>
   )
 }
