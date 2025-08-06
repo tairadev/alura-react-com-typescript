@@ -2,7 +2,8 @@ import React from 'react'
 import styles from './CardMovie.module.css'
 import Tag, { type Category, type Censorship } from '../Tag'
 
-interface CardMovieProps {
+export interface Movie {
+  id?: number;
   alt: string;
   src: string;
   title: string;
@@ -12,7 +13,7 @@ interface CardMovieProps {
   duration: number;
 }
 
-const CardMovie = (props: CardMovieProps) => {
+const CardMovie = (props: Movie) => {
   const { alt, src, title, genre, category, censorship, duration } = props;
 
   return (
