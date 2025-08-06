@@ -11,18 +11,18 @@ import { getMovies } from '../../services'
 const MovieSection = () => {
   const [movies, setMovies] = useState<Movie[]>([])
 
-  const fetchMovies = async () => {
-    try {
-      const resMovies = await getMovies()
-      setMovies(resMovies);
-    } catch (err) {
-      console.error("Erro ao buscar os filmes" + err)
-    }
-  }
-
   useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const resMovies = await getMovies()
+        setMovies(resMovies);
+      } catch (err) {
+        console.error("Erro ao buscar os filmes" + err)
+      }
+    }
+
     fetchMovies()
-  })
+  }, [])
 
   return (
     <main>
