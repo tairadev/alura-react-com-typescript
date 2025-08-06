@@ -1,10 +1,9 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import {
   ButtonGroup,
   CloseButton,
   ModalContainer,
   ModalHeader,
-  ModalOverlay,
 } from "./style";
 import Botao from "../Botao";
 
@@ -18,6 +17,7 @@ interface ModalProps {
   titulo: string;
   children: React.ReactNode;
   aoClicar: () => void;
+  cliqueForaModal: boolean;
 }
 
 const Modal = forwardRef<ModalHandle, ModalProps>(({
@@ -25,30 +25,50 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({
   titulo,
   children,
   aoClicar,
+  cliqueForaModal = true,
 }, ref) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
+  const fechaModal = () => {
+    dialogRef.current?.close()
+  }
+
+  useImperativeHandle(ref, () => (
+    {
+      open: () => dialogRef.current?.showModal(),
+      close: fechaModal,
+    }
+  ))
+
+  const aoClicarForaModal = (e: React.MouseEvent<HTMLDialogElement>) => {
+    if (cliqueForaModal && e.target === dialogRef.current) {
+      fechaModal()
+    }
+  }
+
   return (
-    <ModalOverlay>
-      <ModalContainer ref={dialogRef}>
-        <ModalHeader>
-          <div>
-            {icon}
-            {titulo}
-          </div>
-          <CloseButton>x</CloseButton>
-        </ModalHeader>
-        {children}
-        <ButtonGroup>
-          <Botao $variante="secundario">
-            Cancelar
-          </Botao>
-          <Botao $variante="primario" onClick={aoClicar}>
-            Adicionar
-          </Botao>
-        </ButtonGroup>
-      </ModalContainer>
-    </ModalOverlay>
+    <ModalContainer ref={dialogRef} onClick={aoClicarForaModal}>
+      <ModalHeader>
+        <div>
+          {icon}
+          {titulo}
+        </div>
+        <CloseButton onClick={fechaModal}>x</CloseButton>
+      </ModalHeader>
+      {children}
+      <ButtonGroup>
+        <Botao $variante="secundario" onClick={fechaModal}>
+          Cancelar
+        </Botao>
+        <Botao $variante="primario" onClick={() => {
+            aoClicar()
+            fechaModal()
+          }
+        }>
+          Adicionar
+        </Botao>
+      </ButtonGroup>
+    </ModalContainer>
   );
 });
 
