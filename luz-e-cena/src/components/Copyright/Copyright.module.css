@@ -1,0 +1,9 @@
+.container {
+  padding: var(--padding-l);
+  background-color: var(--cinza-claro);
+  text-align: center;
+}
+
+.text {
+
+}
