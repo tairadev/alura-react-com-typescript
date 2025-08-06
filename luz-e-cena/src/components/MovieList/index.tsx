@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './MovieList.module.css'
-import CardMovie, { type Movie } from '../CardMovie'
+import CardMovie from '../CardMovie'
+import type { Movie } from '../../types';
 
 interface MovieListProps {
   movies: Movie[];

@@ -1,13 +1,10 @@
 import React from 'react'
 import styles from './Tag.module.css'
 import classNames from 'classnames';
-
-export type Category = '2D' | '3D'
-
-export type Censorship = 'Livre' | '10 anos' | '12 anos' | '14 anos' | '16 anos'
+import type { Category, Censorship } from '../../types';
 
 interface TagProps {
-  value: Category | Censorship
+  value: Category | Censorship;
 }
 
 const tagClasses = {
