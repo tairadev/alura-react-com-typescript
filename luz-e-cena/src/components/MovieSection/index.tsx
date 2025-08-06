@@ -1,0 +1,110 @@
+import React from 'react'
+import styles from './MovieSection.module.css'
+import Fieldset from '../Fieldset'
+import InputText from '../InputText'
+import Button from '../Button'
+import { FaSearch } from 'react-icons/fa'
+import MovieList from '../MovieList'
+import type { Movie } from '../../types'
+
+const movies: Movie[] = [
+    {
+        id: 1,
+        src: "/capas-de-filmes/amanhecer.png",
+        alt: "Imagem do filme Amanhecer",
+        title: "Amanhecer",
+        category: "2D",
+        censorship: "Livre",
+        genre: "Romance",
+        duration: 90,
+    },
+    {
+        id: 2,
+        src: "/capas-de-filmes/amigo-da-sombra.png",
+        alt: "Imagem do filme Amigo da sombra",
+        title: "Amigo da sombra",
+        category: "2D",
+        censorship: "12 anos",
+        genre: "Suspense",
+        duration: 110,
+    },
+    {
+        id: 3,
+        src: "/capas-de-filmes/amigos-do-bosque-magico.png",
+        alt: "Imagem do filme Amigo do bosque mágico",
+        title: "Amigo do bosque mágico",
+        category: "2D",
+        censorship: "Livre",
+        genre: "Animação",
+        duration: 60,
+    },
+    {
+        id: 4,
+        src: "/capas-de-filmes/caminho-para-o-abismo.png",
+        alt: "Imagem do filme Caminho para o abismo",
+        title: "Caminho para o abismo",
+        category: "2D",
+        censorship: "14 anos",
+        genre: "Horror",
+        duration: 103,
+    },
+    {
+        id: 5,
+        src: "/capas-de-filmes/desastres-do-escritorio.png",
+        alt: "Imagem do filme Desastres do Escritório",
+        title: "Desastres do Escritório",
+        category: "2D",
+        censorship: "Livre",
+        genre: "Comédia",
+        duration: 85,
+    },
+    {
+        id: 6,
+        src: "/capas-de-filmes/mestres-do-futuro.png",
+        alt: "Imagem do filme Mestres do Futuro",
+        title: "Mestres do Futuro",
+        category: "2D",
+        censorship: "Livre",
+        genre: "Documentário",
+        duration: 120,
+    },
+    {
+        id: 7,
+        src: "/capas-de-filmes/la-esperanza.png",
+        alt: "Imagem do filme La Esperanza",
+        title: "La Esperanza",
+        category: "2D",
+        censorship: "12 anos",
+        genre: "Drama",
+        duration: 98,
+    },
+    {
+        id: 8,
+        src: "/capas-de-filmes/o-nexus-do-tempo.png",
+        alt: "Imagem do filme O nexus do tempo",
+        title: "O nexus do tempo",
+        category: "3D",
+        censorship: "10 anos",
+        genre: "Ficcção Científica",
+        duration: 105,
+    },
+];
+
+const MovieSection = () => {
+  return (
+    <main>
+      <section className={styles.container}>
+        <Fieldset variant="secondary">
+          <InputText placeholder="Buscar filmes..." />
+          <Button variant="icon">
+            <FaSearch />
+          </Button>
+        </Fieldset>
+        <h1 className={styles.title}>Em cartaz</h1>
+        <MovieList movies={movies} />
+      </section>
+    </main>
+  )
+}
+
+export default MovieSection
